@@ -17,9 +17,10 @@ public class DescribeClass {
                 for (String classes : args) {
                     System.out.println(classes);
                 Class<?> testClass = Class.forName(classes);
+                getModifierInfo(testClass);
                 getConstructorInfo(testClass);
                 getMethodInfo(testClass);
-                getModifierInfo(testClass); }
+                getFieldsInfo(testClass);}
 
 
 
@@ -28,32 +29,6 @@ public class DescribeClass {
             }
         }
 
-
-
-/*
-        String s = args[0];
-        //System.out.println(String.class.getName());
-        Class<?> x;
-        try {
-            x = (java.lang.Class.forName(s));
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        System.out.println("Constructors:\n");
-        Constructor[] cons = (x.getConstructors());
-        for (Constructor y : cons) {
-            System.out.println(y);
-        }
-        System.out.println("Methods:\n");
-        Method [] methods = (x.getMethods());
-        for (Method y : methods) {
-            System.out.println(y);
-        }
-*/
-
-        // TODO: implement the functionality for Question 1
     }
 
     private static void getModifierInfo(Class<?> testClass) {
@@ -68,5 +43,9 @@ public class DescribeClass {
     private static void getConstructorInfo(Class<?> testClass) {
         System.out.println(testClass.getConstructors().length);
         System.out.println(Arrays.stream(testClass.getConstructors()).limit(4).collect(Collectors.toList()));
+    }
+    private static void getFieldsInfo(Class<?> testClass) {
+        System.out.println(testClass.getFields().length);
+        System.out.println(Arrays.stream(testClass.getFields()).collect(Collectors.toList()));
     }
 }
